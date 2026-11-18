@@ -89,6 +89,38 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
 .nav button{flex:1;max-width:120px;background:none;border:0;color:var(--mut);font-weight:600;font-size:11px;cursor:pointer;text-align:center;position:relative}
 .nav button i{display:block;font-style:normal;font-size:19px;line-height:28px;width:50px;margin:0 auto 2px;border-radius:99px}.nav button.on{color:var(--ink)}.nav button.on i{background:#3a2c18}
 .nav button[data-n]:after{content:attr(data-n);position:absolute;top:-2px;left:calc(50% + 10px);background:var(--acc);color:var(--accx);font-size:10.5px;font-weight:700;border-radius:99px;padding:0 5px;line-height:16px}
+.ayuda{border:1px dashed #6a4a16;background:#241a0e;border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.45;color:#f3d9a8;margin-bottom:10px}
+.paso{font:700 19px Fraunces,serif;margin:12px 0 8px}
+.meals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
+.meal{min-height:64px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:700;font-size:16.5px;cursor:pointer;line-height:1.2;padding:6px}
+.meal.on{background:var(--acc);color:var(--accx);border:2px solid var(--acc)}
+.meal.env{background:#18202e;color:#cfe0ff;border-color:#33405a;font-size:14.5px;min-height:56px}.meal.env.on{background:var(--blue);color:#0c1a33;border:2px solid var(--blue)}
+.envbox{background:#18202e;border:1px solid #33405a;border-radius:16px;padding:12px;margin:10px 0 0;display:grid;gap:8px}
+.resu{background:var(--card2);border-radius:12px;padding:10px 12px;font-size:14px;white-space:pre-line;margin-bottom:10px}
+.tr.col{flex-direction:column;align-items:stretch;gap:6px}
+.medi{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.medi span{font-size:12px;color:var(--mut)}
+.medi button{min-height:32px;padding:4px 12px;border-radius:16px;font-weight:600;font-size:12.5px;background:var(--card2);color:var(--mut);border:1px solid var(--line);cursor:pointer}
+.medi button.on{background:var(--acc);color:var(--accx);border-color:var(--acc)}
+.medi button.bolsa{background:#1c3324;color:var(--ok);border-color:#2f4a35}
+.bar{height:6px;border-radius:3px;background:var(--card2);margin-top:5px;overflow:hidden}.bar i{display:block;height:100%}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px}
+.mesh{display:flex;align-items:center;gap:8px;margin-bottom:8px}.mesh h2{flex:1;margin:0;font:700 19px Fraunces,serif;text-align:center}
+.mes{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}
+.mes .h{color:var(--mut);font-size:10.5px;text-align:center;font-weight:700;padding:2px 0}
+.mes button{height:42px;border-radius:9px;background:var(--card2);border:1px solid transparent;color:var(--ink);font-weight:600;font-size:13.5px;cursor:pointer;padding:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.mes button i{display:block;width:6px;height:6px;border-radius:50%}
+.mes button.v{visibility:hidden}.mes button.hoy{border-color:var(--acc)}.mes button.sel{background:var(--acc);color:var(--accx)}
+.rc{display:flex;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:8px}
+.rc.nada{border-color:var(--card2)}.rc.nada b{color:var(--mut)}.rc.ped{border-color:#2f4a35}.rc.ped b{color:var(--ok)}.rc.env{border-color:#33405a}.rc.env b{color:var(--blue)}
+.ri{width:38px;height:38px;flex:none;border-radius:50%;background:var(--card2);display:flex;align-items:center;justify-content:center;font-size:19px}
+.rx{flex:1;min-width:0}.rx b{font-size:15px}.rx small{display:block;color:var(--mut);font-size:12px}
+.it{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-top:5px}.it span{flex:1}.it.anul span{text-decoration:line-through;color:var(--mut)}
+.it button{font-size:11.5px;padding:4px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card2);color:var(--mut);cursor:pointer}
+.pr{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin-bottom:6px}
+.pr span{flex:1;font-size:15px}.pr small{display:block;font-size:12px;color:var(--mut)}.pr.gu{border-style:dashed;background:#1b1612}.pr.gu span{color:var(--mut)}
+.pr button{min-height:38px;padding:6px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--ink);font-weight:600;font-size:13px;cursor:pointer}
+.pr button.rojo{border-color:#5a2e26;background:#2b1a16;color:var(--red)}.pr button.verde{border-color:#2f4a35;background:#1c3324;color:var(--ok)}
+.qk{flex-wrap:nowrap;overflow-x:auto}
 .solover .adm{display:none!important}
 #imp{display:none}
 @media print{
@@ -140,47 +172,60 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
   <div class="res" id="res"></div>
   <div id="alerta"></div>
   <div class="srch"><span aria-hidden="true">🔍</span><input id="q" type="search" placeholder="Buscar producto" aria-label="Buscar producto"></div>
-  <div class="tabs" id="cats"></div>
+  <div class="qk" id="cats"></div>
   <div id="lista"></div>
-  <button class="b adm" data-act="nuevoProd" style="width:100%;margin-top:6px">＋ Agregar un producto</button>
- </div>
-
- <div id="v-llego" hidden>
-  <div class="ficha"><h3>🚚 Llegó el pedido</h3><p>Ya viene cargado lo que llega siempre. Corregí lo que llegó de verdad; si algo no vino, dejalo en 0.</p></div>
-  <div class="qk"><button data-act="llegoHabitual">Cargar lo de siempre</button><button data-act="llegoCero">Poner todo en 0</button></div>
-  <div id="llegoLista"></div>
-  <label class="f"><span>Nota (opcional)</span><textarea id="llegoNota" placeholder="Ej: faltó la cocoa, la traen el lunes"></textarea></label>
-  <div id="llegoErr" class="lerr"></div>
-  <button class="big" id="llegoBtn" data-act="guardarLlego">Guardar pedido</button>
  </div>
 
  <div id="v-sacar" hidden>
-  <div class="ficha"><h3>➖ Sacar de la despensa</h3><p>Lo que se usa en la cocina o en la limpieza. Se descuenta del stock y queda anotado con tu usuario.</p></div>
-  <label class="f"><span>Producto</span><select id="sProd"></select></label>
-  <div id="sMedBox"><div class="lbl">Se saca en</div><div class="qk" id="sMed"></div></div>
-  <div class="lbl">Cantidad</div>
-  <div class="step" style="margin-bottom:6px"><button type="button" data-act="sMenos" aria-label="Menos">−</button><input id="sCant" inputmode="decimal" value="1" aria-label="Cantidad"><button type="button" data-act="sMas" aria-label="Más">+</button><span class="u" id="sUni" style="width:auto;font-size:14px"></span></div>
-  <div id="sHay" style="color:var(--mut);font-size:13px;margin-bottom:6px"></div>
-  <div class="lbl">Para</div>
-  <div class="qk" id="sPara"></div>
-  <label class="f"><span>Nota (opcional)</span><textarea id="sNota" placeholder="Ej: para el cumpleaños"></textarea></label>
-  <div id="sErr" class="lerr"></div>
-  <button class="big" id="sBtn" data-act="guardarSacar">Descontar del stock</button>
+  <div class="ayuda" id="sAyuda"></div>
+  <div class="paso">1. ¿Para qué es?</div>
+  <div class="meals" id="meals"></div>
+  <div style="font-size:12.5px;font-weight:700;color:var(--blue);margin:2px 0 6px">… o mandar a otra casa</div>
+  <div class="meals" id="dests"></div>
+  <div id="sCuerpo" hidden>
+   <div id="envBox" class="envbox" hidden>
+    <b style="color:var(--blue)" id="envTit"></b>
+    <label class="f"><span>¿Quién lo pidió?</span><input id="ePidio" maxlength="80" placeholder="Ej: Juan, encargado de Camino Seguro"></label>
+    <label class="f" style="margin:0"><span>¿Quién lo manda?</span><input id="eManda" maxlength="80"></label>
+   </div>
+   <div class="paso" id="sPaso2"></div>
+   <div id="sLista"></div>
+   <div class="paso">3. Descontar</div>
+   <div class="resu" id="sResumen"></div>
+   <label class="f"><span>Nota (opcional)</span><input id="sNota" maxlength="200" placeholder="Ej: guiso para el cumpleaños"></label>
+   <div id="sErr" class="lerr"></div>
+   <button class="big" id="sBtn" data-act="descontar">Descontar</button>
+  </div>
+  <div id="sNoAdm" class="vacio" hidden>Solo los Admin pueden sacar mercadería.</div>
  </div>
 
- <div id="v-faltan" hidden>
-  <div class="ficha"><h3>📝 Para pedir el sábado</h3><p>La app arma sola la lista con lo que quedó por debajo del mínimo.</p></div>
-  <div id="faltaLista"></div>
-  <div class="btns" id="faltaBtns"><button class="b" data-act="copiar">📋 Copiar lista</button><button class="b" data-act="imprimir">🖨 Imprimir con el logo</button></div>
+ <div id="v-llego" hidden>
+  <div class="ayuda">🚚 <b>Llegó el pedido:</b> en cada cosa escribí cuánto llegó (ej.: <b>80</b> en Fideos = 80 kg) o usá los botones verdes de bolsa. Al guardar se suma a lo que había, y el aviso de "queda poco" se calcula con lo nuevo.</div>
+  <div id="llegoLista"></div>
+  <label class="f"><span>Nota (opcional)</span><input id="llegoNota" maxlength="200" placeholder="Ej: faltó la cocoa, la traen el lunes"></label>
+  <div id="llegoErr" class="lerr"></div>
+  <button class="big" id="llegoBtn" data-act="guardarLlego">Guardar lo que llegó</button>
+  <div id="lNoAdm" class="vacio" hidden>Solo los Admin pueden cargar el pedido.</div>
  </div>
 
- <div id="v-hist" hidden>
-  <div class="tabs" id="hTabs"></div>
-  <div id="histLista"></div>
+ <div id="v-reg" hidden>
+  <div class="cal">
+   <div class="mesh"><button class="ic" data-act="mesAnt" aria-label="Mes anterior">‹</button><h2 id="mesTxt"></h2><button class="ic" data-act="mesSig" aria-label="Mes siguiente">›</button></div>
+   <div class="mes" id="mes"></div>
+   <div style="font-size:11.5px;color:var(--mut);margin-top:8px">● naranja = comidas · ● verde = llegó pedido · ● azul = envío a otra casa · tocá un día para ver todo</div>
+  </div>
+  <div class="paso" id="diaTxt" style="margin-top:12px"></div>
+  <div id="diaLista"></div>
+ </div>
+
+ <div id="v-prod" hidden>
+  <div class="ayuda">📝 <b>Productos:</b> <b>Agregar</b> si llega algo distinto. <b>Quitar</b> lo que no se usa en esta temporada (invierno o verano): no se borra, queda guardado y lo volvés a usar. Con ✏️ cambiás medidas, bolsas y mínimo.</div>
+  <button class="big adm" data-act="nuevoProd" style="margin-bottom:10px">＋ Agregar un producto</button>
+  <div id="prodLista"></div>
  </div>
 </div>
 
-<div class="nav" id="nav" hidden><button data-v="stock" class="on"><i>📦</i>Stock</button><button data-v="llego"><i>🚚</i>Llegó</button><button data-v="sacar"><i>➖</i>Sacar</button><button data-v="faltan"><i>📝</i>Faltan</button><button data-v="hist"><i>🕘</i>Historial</button></div>
+<div class="nav" id="nav" hidden><button data-v="stock" class="on"><i>📦</i>Stock</button><button data-v="sacar"><i>🍽️</i>Sacar</button><button data-v="llego"><i>🚚</i>Llegó</button><button data-v="reg"><i>🕘</i>Registro</button><button data-v="prod"><i>📝</i>Productos</button></div>
 <div class="sheet" id="sheet"><div class="sh" id="sh"></div></div>
 <div class="toast" id="toast" role="status"></div>
 <div id="imp"></div>
@@ -197,20 +242,29 @@ const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;"
 const fn=n=>{n=Math.round(Number(n||0)*100)/100;return String(n).replace(".",",")};
 const pn=v=>{const n=Number(String(v==null?"":v).trim().replace(",","."));return isFinite(n)?Math.round(n*1000)/1000:NaN};
 const ls={get(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(x){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(x){}},del(k){try{localStorage.removeItem(k)}catch(x){}}};
-const CATS=["Almacén","Frío","Limpieza"];
-const PARA=["Desayuno","Almuerzo","Merienda","Cena","Limpieza","Otro"];
+const CATS=["Almacén","Condimentos","Frío","Limpieza"];
+const COMIDAS=[["Desayuno","☕"],["Almuerzo","🍝"],["Merienda","🧉"],["Cena","🍲"]];
+const DESTINOS=[["Camino Seguro","🚐"],["Casa de Medio Camino","🏠"]];
 const DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+const AVISO=0.2; // avisa cuando queda el 20% de lo que había después del último pedido
 let cred=null,cargando=false,ocupado=false;
-const S={rol:"",prods:[],movs:[],v:"stock",cat:"Todo",q:"",llego:null,sId:"",sMed:"medida2",sPara:"Almuerzo",hTipo:"Todo"};
+const hoyD=new Date();
+const S={rol:"",prods:[],movs:[],v:"stock",cat:"Todo",q:"",llego:{},para:"",carro:{},medS:{},cal:{y:hoyD.getFullYear(),m:hoyD.getMonth()},dSel:""};
 const pl=(m,n)=>n===1||/s$/i.test(m)?m:m+(/[aeiouáéíóú]$/i.test(m)?"s":"es");
 const tiene2=p=>!!(p&&p.medida2&&p.equiv>0);
 const en2=p=>Math.round(p.stock*p.equiv*10)/10;
 const esAdmin=()=>S.rol==="Admin";
 const prod=id=>S.prods.find(p=>p.id===id);
 const activos=()=>S.prods.filter(p=>p.activo);
-const bajo=p=>p.stock<p.minimo;
+const esPaq=p=>p.categoria==="Condimentos"||p.unidad==="paq";
+const bajo=p=>p.activo&&p.referencia>0&&p.stock<=p.referencia*AVISO;
+const art=c=>(c==="Merienda"||c==="Cena"?"la ":"el ")+c.toLowerCase();
+const delA=c=>(c==="Merienda"||c==="Cena"?"de la ":"del ")+c.toLowerCase();
 const faltan=()=>activos().filter(bajo);
-const sugerido=p=>p.habitual>0?Math.max(p.habitual,Math.round((p.minimo-p.stock)*100)/100):Math.max(0,Math.round((p.minimo-p.stock)*100)/100);
+const sugerido=p=>p.habitual>0?p.habitual:Math.max(1,Math.round(((p.referencia||p.minimo)-p.stock)*10)/10);
+const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+S.dSel=iso(hoyD);
 
 function toast(t){const e=$("toast");e.textContent=t;e.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",2800)}
 function nota(t){$("nota").hidden=!t;$("nota").textContent=t||""}
@@ -296,116 +350,41 @@ async function enviar(accion,extra,btn,okTxt,errEl){
 
 /* ===== Pantallas ===== */
 function verV(v){S.v=v;document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.v===v));
- ["stock","llego","sacar","faltan","hist"].forEach(k=>$("v-"+k).hidden=k!==v);window.scrollTo(0,0);render()}
+ ["stock","sacar","llego","reg","prod"].forEach(k=>$("v-"+k).hidden=k!==v);window.scrollTo(0,0);render()}
 function render(){
  document.body.classList.toggle("solover",!esAdmin());
- const nf=faltan().length,bt=document.querySelector('#nav [data-v="faltan"]');if(nf)bt.dataset.n=nf;else delete bt.dataset.n;
- ({stock:rStock,llego:rLlego,sacar:rSacar,faltan:rFaltan,hist:rHist})[S.v]()}
-
+ const nf=faltan().length,bt=document.querySelector('#nav [data-v="stock"]');if(nf)bt.dataset.n=nf;else delete bt.dataset.n;
+ ({stock:rStock,sacar:rSacar,llego:rLlego,reg:rReg,prod:rProd})[S.v]()}
 function diasSabado(){const h=new Date().getDay(),d=(6-h+7)%7;return d===0?"es hoy":d===1?"falta 1 día":"faltan "+d+" días"}
+const grupos=ps=>{const cs=[...new Set([...CATS,...ps.map(p=>p.categoria)])].filter(c=>ps.some(p=>p.categoria===c));return cs.map(c=>[c,ps.filter(p=>p.categoria===c)])};
+
+/* --- Stock --- */
 function rStock(){
- const act=activos(),nf=faltan().length;
+ const act=activos(),fs=faltan();
  $("res").innerHTML=`<button data-v="stock"><b>${act.length}</b><span>productos</span></button>
-  <button data-v="faltan" class="${nf?"w":""}"><b>${nf}</b><span>por terminarse</span></button>
+  <button data-act="verFaltan" class="${fs.length?"w":""}"><b>${fs.length}</b><span>queda poco</span></button>
   <button data-v="llego"><b>Sáb</b><span>pedido · ${diasSabado()}</span></button>`;
  const sinCargar=act.length&&act.every(p=>p.stock===0)&&!S.movs.length;
- $("alerta").innerHTML=sinCargar?`<div class="alerta"><b>Primer paso:</b> ${esAdmin()?"contá lo que hay en la despensa (tocá cada producto → Contar) o cargá el pedido del sábado en 🚚 Llegó.":"todavía no se cargó lo que hay en la despensa."}</div>`:"";
- $("cats").innerHTML=["Todo",...CATS,...[...new Set(act.map(p=>p.categoria))].filter(c=>!CATS.includes(c))].map(c=>`<button data-cat="${esc(c)}" class="${S.cat===c?"on":""}">${esc(c)}</button>`).join("");
+ $("alerta").innerHTML=sinCargar?`<div class="alerta"><b>Primer paso:</b> ${esAdmin()?"cargá el pedido en 🚚 Llegó, o contá lo que hay (tocá cada producto → Contar).":"todavía no se cargó lo que hay en la despensa."}</div>`
+  :fs.length?`<button class="alerta" data-act="verFaltan" style="width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer"><b>⚠ Queda poco:</b> ${fs.map(p=>esc(p.nombre)+" ("+fn(p.stock)+" "+esc(p.unidad)+")").join(", ")} <u style="color:var(--acc)">Ver lista para pedir</u></button>`:"";
+ $("cats").innerHTML=["Todo",...grupos(act).map(g=>g[0])].map(c=>`<button data-cat="${esc(c)}" class="${S.cat===c?"on":""}">${esc(c)}</button>`).join("");
  rLista()}
 function rLista(){
  const q=S.q.trim().toLowerCase();
- let ps=S.prods.filter(p=>(S.cat==="Todo"||p.categoria===S.cat)&&(!q||p.nombre.toLowerCase().includes(q)));
- const fila=p=>{const cero=p.stock<=0,poco=!cero&&bajo(p);
-  return `<button class="t ${cero&&p.activo?"cero":poco&&p.activo?"urg":""}" data-id="${esc(p.id)}"><div class="d"><b>${fn(p.stock)}</b><small>${esc(p.unidad)}</small></div>
-  <div class="i"><div class="n">${esc(p.nombre)}</div><div class="s">${tiene2(p)?`≈ ${fn(en2(p))} ${esc(pl(p.medida2,2))} · `:""}Mínimo ${fn(p.minimo)} · llegan ${fn(p.habitual)} ${esc(p.unidad)}</div>
-  <div class="chips">${!p.activo?`<span class="chip">No se compra más</span>`:cero?`<span class="chip cero">Sin stock</span>`:poco?`<span class="chip sin">Queda poco</span>`:""}</div></div></button>`};
+ const ps=activos().filter(p=>(S.cat==="Todo"||p.categoria===S.cat)&&(!q||p.nombre.toLowerCase().includes(q)));
  if(!ps.length){$("lista").innerHTML=`<div class="vacio">${S.prods.length?"No hay productos con ese nombre.":"Cargando…"}</div>`;return}
- const act=ps.filter(p=>p.activo),ina=ps.filter(p=>!p.activo);
- let h="";const cats=[...new Set(act.map(p=>p.categoria))];
- cats.forEach(c=>{h+=`<div class="grp">${esc(c)}</div>`+act.filter(p=>p.categoria===c).map(fila).join("")});
- if(ina.length)h+=`<div class="grp">Ya no se compran</div>`+ina.map(fila).join("");
- $("lista").innerHTML=h}
-
-function tipoCls(t){return t==="Entrada"?"e":t==="Salida"?"s":"c"}
-function textoMov(m){const c=fn(Math.abs(m.cantidad))+" "+m.unidad;
- return m.tipo==="Entrada"?"Llegaron "+c+" de "+m.producto:m.tipo==="Salida"?(m.detalle?"Se sacó "+m.detalle+" de "+m.producto+" ("+c+")":"Se sacó "+c+" de "+m.producto):"Se contó "+m.producto+": quedó en "+fn(m.stockDespues)+" "+m.unidad}
-function cuando(iso){const d=new Date(iso);if(isNaN(d))return"";const hoy=new Date(),ay=new Date(Date.now()-864e5),mismo=(a,b)=>a.toDateString()===b.toDateString();
- const h=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
- return(mismo(d,hoy)?"hoy":mismo(d,ay)?"ayer":DIAS[d.getDay()]+" "+d.getDate()+"/"+(d.getMonth()+1))+" "+h}
-
-function abrirProd(id){const p=prod(id);if(!p)return;
- const ms=S.movs.filter(m=>m.productoId===id&&!m.anulado).slice(0,8);
- abrir(`<h2>${esc(p.nombre)}</h2><p class="sub">${esc(p.categoria)} · se cuenta en ${esc(p.unidad)}${tiene2(p)?` · se saca en ${esc(pl(p.medida2,2))} (1 ${esc(p.unidad)} = ${fn(p.equiv)} ${esc(pl(p.medida2,p.equiv))}) · hay ≈ ${fn(en2(p))} ${esc(pl(p.medida2,2))}`:""}${p.activo?"":" · ya no se compra"}</p>
- <div class="kpi"><div><b style="color:${p.stock<=0?"var(--red)":bajo(p)?"var(--acc)":"var(--ink)"}">${fn(p.stock)}</b><span>hay ahora</span></div><div><b>${fn(p.minimo)}</b><span>mínimo</span></div><div><b>${fn(p.habitual)}</b><span>llegan siempre</span></div></div>
- <div class="lbl">Últimos movimientos</div>
- ${ms.length?`<div class="hist">${ms.map(m=>`<div class="${tipoCls(m.tipo)}">${esc(textoMov(m))}<small>${esc(cuando(m.fecha))} · ${esc(m.quien)}${m.para?" · "+esc(m.para):""}${m.nota?" · "+esc(m.nota):""}</small></div>`).join("")}</div>`:`<p class="sub">Todavía no tiene movimientos.</p>`}
- <div class="btns adm" style="margin-top:12px"><button class="b p" data-act="sacarEste" data-id="${esc(id)}">➖ Sacar</button><button class="b" data-act="contar" data-id="${esc(id)}">🔢 Contar lo que hay</button><button class="b full" data-act="editar" data-id="${esc(id)}">✏️ Cambiar datos</button></div>
- <div class="btns" style="margin-top:8px"><button class="b full" data-act="cerrar">Cerrar</button></div>`)}
-
-function abrirContar(id){const p=prod(id);if(!p)return;
- abrir(`<h2>🔢 Contar ${esc(p.nombre)}</h2><p class="sub">Poné lo que hay de verdad en la despensa. El stock se corrige y queda anotado.</p>
- <label class="f"><span>Hay ahora (${esc(p.unidad)})</span><input id="cHay" inputmode="decimal" value="${fn(p.stock)}"></label>
- <label class="f"><span>Nota (opcional)</span><input id="cNota" placeholder="Ej: conteo del sábado"></label>
- <div id="cErr" class="lerr"></div>
- <div class="btns"><button class="b" data-act="volverProd" data-id="${esc(id)}">Cancelar</button><button class="b p" data-act="guardarContar" data-id="${esc(id)}">Guardar</button></div>`);
- setTimeout(()=>{const i=$("cHay");i.focus();i.select()},50)}
-
-function abrirEditar(id){const p=id?prod(id):{nombre:"",categoria:S.cat!=="Todo"?S.cat:"Almacén",unidad:"u",minimo:0,habitual:0,activo:true,stock:0,medida2:"",equiv:0};if(!p)return;
- const cats=[...new Set([...CATS,...S.prods.map(x=>x.categoria),"Otro"])];
- abrir(`<h2>${id?"✏️ "+esc(p.nombre):"＋ Producto nuevo"}</h2><p class="sub">${id?"Cambiá lo que necesites.":"Se agrega a la lista de la despensa."}</p>
- <label class="f"><span>Nombre</span><input id="eNom" value="${esc(p.nombre)}" maxlength="60" placeholder="Ej: Aceite"></label>
- <div class="row"><label class="f"><span>Categoría</span><select id="eCat">${cats.map(c=>`<option ${c===p.categoria?"selected":""}>${esc(c)}</option>`).join("")}</select></label>
- <label class="f"><span>Se cuenta en</span><input id="eUni" value="${esc(p.unidad)}" maxlength="12" list="unis"></label></div>
- <datalist id="unis"><option>kg</option><option>paq</option><option>L</option><option>u</option><option>rollo</option><option>lata</option><option>sobre</option><option>caja</option></datalist>
- <div class="row"><label class="f"><span>Mínimo (avisa en amarillo)</span><input id="eMin" inputmode="decimal" value="${fn(p.minimo)}"></label>
- <label class="f"><span>Llega siempre en el pedido</span><input id="eHab" inputmode="decimal" value="${fn(p.habitual)}"></label></div>
- <div class="row"><label class="f"><span>También se saca en (opcional)</span><input id="eMed2" value="${esc(p.medida2||"")}" maxlength="15" placeholder="Ej: taza" list="meds"></label>
- <label class="f"><span id="eEqL">¿Cuántas hay en 1 ${esc(p.unidad)}?</span><input id="eEq" inputmode="decimal" value="${p.equiv?fn(p.equiv):""}" placeholder="Ej: 2"></label></div>
- <datalist id="meds"><option>taza</option><option>cucharada</option><option>vaso</option><option>plato</option></datalist>
- ${id?`<label class="f" style="display:flex;gap:8px;align-items:center"><input id="eAct" type="checkbox" style="width:auto" ${p.activo?"checked":""}><span style="margin:0;color:var(--ink)">Se sigue comprando</span></label>`
-   :`<label class="f"><span>Hay ahora (opcional)</span><input id="eStock" inputmode="decimal" value="0"></label>`}
- <div id="eErr" class="lerr"></div>
- <div class="btns"><button class="b" data-act="${id?"volverProd":"cerrar"}" data-id="${esc(id||"")}">Cancelar</button><button class="b p" data-act="guardarProd" data-id="${esc(id||"")}">Guardar</button></div>`)}
-
-/* --- Llegó el pedido --- */
-function llegoDeSiempre(){S.llego={};activos().forEach(p=>S.llego[p.id]=p.habitual)}
-function rLlego(){
- const adm=esAdmin();document.querySelector("#v-llego .qk").hidden=!adm;$("llegoBtn").hidden=!adm;$("llegoNota").closest(".f").hidden=!adm;
- if(!adm){$("llegoLista").innerHTML=`<div class="vacio">Solo los Admin pueden cargar el pedido.</div>`;return}
- if(!S.llego)llegoDeSiempre();
- const ps=activos();
- if(!ps.length){$("llegoLista").innerHTML=`<div class="vacio">Cargando…</div>`;return}
- let h="";[...new Set(ps.map(p=>p.categoria))].forEach(c=>{
-  h+=`<div class="grp">${esc(c)}</div><div class="tar">`+ps.filter(p=>p.categoria===c).map(p=>{const v=S.llego[p.id]||0;
-   return `<div class="tr ${v?"":"cero"}" data-lid="${esc(p.id)}"><div class="x"><b>${esc(p.nombre)}</b><small>Hay ${fn(p.stock)} ${esc(p.unidad)}</small></div>
-   <div class="step"><button type="button" data-act="lMenos" data-id="${esc(p.id)}" aria-label="Menos ${esc(p.nombre)}">−</button><input data-lin="${esc(p.id)}" inputmode="decimal" value="${fn(v)}" aria-label="${esc(p.nombre)} que llegó"><button type="button" data-act="lMas" data-id="${esc(p.id)}" aria-label="Más ${esc(p.nombre)}">+</button><span class="u">${esc(p.unidad)}</span></div></div>`}).join("")+`</div>`});
- $("llegoLista").innerHTML=h;contarLlego()}
-function contarLlego(){const n=Object.values(S.llego||{}).filter(v=>v>0).length;$("llegoBtn").textContent=n?`Guardar pedido (${n} producto${n===1?"":"s"})`:"Guardar pedido"}
-function ponerLlego(id,v){v=Math.max(0,Math.round(v*1000)/1000);S.llego[id]=v;const r=document.querySelector(`[data-lid="${CSS.escape(id)}"]`);if(r){r.classList.toggle("cero",!v);r.querySelector("input").value=fn(v)}contarLlego()}
-$("llegoLista").addEventListener("input",e=>{const id=e.target.dataset.lin;if(!id)return;const v=pn(e.target.value);S.llego[id]=isNaN(v)?0:Math.max(0,v);e.target.closest(".tr").classList.toggle("cero",!S.llego[id]);contarLlego()});
-
-/* --- Sacar --- */
-function rSacar(){
- if(!esAdmin()){$("v-sacar").querySelectorAll(".f,.lbl,.step,#sHay,.qk,.big").forEach(e=>e.hidden=true);$("sErr").textContent="Solo los Admin pueden sacar mercadería.";return}
- $("v-sacar").querySelectorAll(".f,.lbl,.step,#sHay,.qk,.big").forEach(e=>e.hidden=false);
- const ps=activos();if(!S.sId||!prod(S.sId))S.sId=(ps[0]||{}).id||"";
- $("sProd").innerHTML=[...new Set(ps.map(p=>p.categoria))].map(c=>`<optgroup label="${esc(c)}">`+ps.filter(p=>p.categoria===c).map(p=>`<option value="${esc(p.id)}" ${p.id===S.sId?"selected":""}>${esc(p.nombre)} (hay ${fn(p.stock)} ${esc(p.unidad)})</option>`).join("")+`</optgroup>`).join("");
- $("sPara").innerHTML=PARA.map(x=>`<button type="button" data-para="${x}" class="${S.sPara===x?"on":""}">${x}</button>`).join("");
- infoSacar()}
-function infoSacar(){const p=prod(S.sId),dos=tiene2(p);$("sMedBox").hidden=!dos;
- if(dos)$("sMed").innerHTML=[["medida2",pl(p.medida2,2)],["principal",p.unidad]].map(([k,l])=>`<button type="button" data-med="${k}" class="${S.sMed===k?"on":""}">${esc(l)}</button>`).join("");
- const usa2=dos&&S.sMed==="medida2";
- $("sUni").textContent=p?(usa2?pl(p.medida2,2):p.unidad):"";
- $("sHay").textContent=p?`Hay ${fn(p.stock)} ${p.unidad}${dos?` (≈ ${fn(en2(p))} ${pl(p.medida2,2)})`:""}${bajo(p)?" · ya está por debajo del mínimo":""}`:"";$("sErr").textContent=""}
-$("sProd").addEventListener("change",e=>{S.sId=e.target.value;S.sMed="medida2";$("sCant").value="1";infoSacar()});
-$("sMed").addEventListener("click",e=>{const b=e.target.closest("[data-med]");if(!b)return;S.sMed=b.dataset.med;$("sCant").value="1";infoSacar()});
-$("sCant").addEventListener("input",()=>$("sErr").textContent="");
-
-/* --- Faltan --- */
-function rFaltan(){const fs=faltan();
- $("faltaBtns").hidden=!fs.length;
- if(!fs.length){$("faltaLista").innerHTML=`<div class="vacio">✅ No falta nada por ahora.</div>`;return}
- $("faltaLista").innerHTML=`<div class="tar">`+fs.map(p=>`<div class="tr"><div class="x"><b>${esc(p.nombre)}</b><small>Hay ${fn(p.stock)} ${esc(p.unidad)} · mínimo ${fn(p.minimo)}</small></div><span class="chip ${p.stock<=0?"cero":"sin"}" style="font-size:13.5px;padding:5px 10px">Pedir ${fn(sugerido(p))} ${esc(p.unidad)}</span></div>`).join("")+`</div>`}
+ $("lista").innerHTML=grupos(ps).map(([c,l])=>`<div class="grp">${esc(c)}</div>`+l.map(p=>{
+  const cero=p.stock<=0,poco=!cero&&bajo(p),ref=p.referencia>0?p.referencia:0,pct=ref?Math.max(0,Math.min(100,p.stock/ref*100)):0;
+  const info=(esPaq(p)?`Quedan ${fn(p.stock)} paquetes`:`Hay ${fn(p.stock)} ${esc(p.unidad)}`)+(ref?` de ${fn(ref)}`:"")+(tiene2(p)?` (≈ ${fn(en2(p))} ${esc(pl(p.medida2,2))})`:"");
+  return `<button class="t ${cero?"cero":poco?"urg":""}" data-id="${esc(p.id)}"><div class="d"><b>${fn(p.stock)}</b><small>${esc(p.unidad)}</small></div>
+  <div class="i"><div class="n">${esc(p.nombre)}</div><div class="s">${info}</div>
+  ${ref?`<div class="bar"><i style="width:${pct}%;background:${cero?"var(--red)":poco?"var(--acc)":"var(--ok)"}"></i></div>`:""}
+  <div class="chips">${cero?`<span class="chip cero">Sin stock</span>`:poco?`<span class="chip sin">Queda poco</span>`:""}</div></div></button>`}).join("")).join("")}
+function verFaltan(){const fs=faltan();
+ abrir(`<h2>📝 Para pedir</h2><p class="sub">Lo que quedó en el 20% o menos de lo que llegó.</p>
+ ${fs.length?`<div class="tar">${fs.map(p=>`<div class="tr"><div class="x"><b>${esc(p.nombre)}</b><small>Hay ${fn(p.stock)} ${esc(p.unidad)}</small></div><span class="chip ${p.stock<=0?"cero":"sin"}" style="font-size:13.5px;padding:5px 10px">Pedir ${fn(sugerido(p))} ${esc(p.unidad)}</span></div>`).join("")}</div>
+ <div class="btns" style="margin-top:10px"><button class="b" data-act="copiar">📋 Copiar lista</button><button class="b" data-act="imprimir">🖨 Imprimir con el logo</button><button class="b full" data-act="cerrar">Cerrar</button></div>`
+ :`<div class="vacio">✅ No falta nada por ahora.</div><div class="btns"><button class="b full" data-act="cerrar">Cerrar</button></div>`}`)}
 function textoFaltan(){const d=new Date();return "Despensa Alas de Libertad – para pedir ("+d.getDate()+"/"+(d.getMonth()+1)+"):\n"+faltan().map(p=>"• "+p.nombre+": "+fn(sugerido(p))+" "+p.unidad).join("\n")}
 async function copiar(){const t=textoFaltan();try{await navigator.clipboard.writeText(t);toast("Lista copiada. Ya la podés pegar donde quieras.")}catch(e){abrir(`<h2>Lista para pedir</h2><p class="sub">Mantené apretado el texto para copiarlo.</p><textarea style="width:100%;min-height:200px;background:var(--card2);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit">${esc(t)}</textarea><div class="btns" style="margin-top:8px"><button class="b full" data-act="cerrar">Cerrar</button></div>`)}}
 function imprimir(){const d=new Date();
@@ -414,31 +393,135 @@ function imprimir(){const d=new Date();
  <table><thead><tr><th>Producto</th><th>Hay</th><th>Pedir</th></tr></thead><tbody>${faltan().map(p=>`<tr><td>${esc(p.nombre)}</td><td class="n">${fn(p.stock)} ${esc(p.unidad)}</td><td class="n">${fn(sugerido(p))} ${esc(p.unidad)}</td></tr>`).join("")}</tbody></table>`;
  const img=$("imp").querySelector("img");const ir=()=>setTimeout(()=>window.print(),100);if(img.complete)ir();else{img.onload=ir;img.onerror=ir}}
 
-/* --- Historial --- */
-function rHist(){
- const tipos=[["Todo","Todo"],["Entrada","Llegó"],["Salida","Salió"],["Conteo","Conteos"]];
- $("hTabs").innerHTML=tipos.map(([k,l])=>`<button data-htipo="${k}" class="${S.hTipo===k?"on":""}">${l}</button>`).join("");
- const ms=S.movs.filter(m=>S.hTipo==="Todo"||m.tipo===S.hTipo);
- if(!ms.length){$("histLista").innerHTML=`<div class="vacio">Todavía no hay movimientos.</div>`;return}
- let h="",dia="",abierto=false;
- ms.slice(0,250).forEach(m=>{const d=new Date(m.fecha),k=isNaN(d)?"":d.toDateString();
-  if(k!==dia){if(abierto)h+=`</div>`;dia=k;const hoy=new Date().toDateString(),ay=new Date(Date.now()-864e5).toDateString();
-   h+=`<div class="grp">${k===hoy?"Hoy":k===ay?"Ayer":isNaN(d)?"":DIAS[d.getDay()]+" "+d.getDate()+"/"+(d.getMonth()+1)}</div><div class="tar">`;abierto=true}
-  const hh=isNaN(d)?"":String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
-  h+=`<div class="tr ${m.anulado?"anul":""}"><div class="sg ${tipoCls(m.tipo)}">${m.tipo==="Entrada"?"+":m.tipo==="Salida"?"−":"="}</div><div class="x"><b>${esc(textoMov(m))}</b><small>${hh} · ${esc(m.quien)}${m.para&&m.tipo==="Salida"?" · "+esc(m.para):""}${m.nota?" · "+esc(m.nota):""}${m.anulado?" · <span style='color:var(--red)'>Anulado "+esc(m.anulado)+"</span>":""}</small></div>
-  ${!m.anulado?`<div class="bb adm"><button data-act="anular" data-id="${esc(m.id)}">Anular</button></div>`:""}</div>`});
- if(abierto)h+=`</div>`;
- $("histLista").innerHTML=h}
+/* --- Producto (detalle, contar, editar) --- */
+function tipoCls(t){return t==="Entrada"?"e":t==="Salida"?"s":"c"}
+function textoMov(m){const c=fn(Math.abs(m.cantidad))+" "+m.unidad;
+ return m.tipo==="Entrada"?"Llegaron "+c+" de "+m.producto:m.tipo==="Salida"?(m.detalle?m.detalle+" de "+m.producto+" ("+c+")":c+" de "+m.producto):"Se contó "+m.producto+": quedó en "+fn(m.stockDespues)+" "+m.unidad}
+function cuando(iso){const d=new Date(iso);if(isNaN(d))return"";const hoy=new Date(),ay=new Date(Date.now()-864e5),mismo=(a,b)=>a.toDateString()===b.toDateString();
+ const h=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
+ return(mismo(d,hoy)?"hoy":mismo(d,ay)?"ayer":DIAS[d.getDay()]+" "+d.getDate()+"/"+(d.getMonth()+1))+" "+h}
+function abrirProd(id){const p=prod(id);if(!p)return;
+ const ms=S.movs.filter(m=>m.productoId===id&&!m.anulado).slice(0,8);
+ abrir(`<h2>${esc(p.nombre)}</h2><p class="sub">${esc(p.categoria)} · se cuenta en ${esc(p.unidad)}${tiene2(p)?` · 1 ${esc(p.unidad)} = ${fn(p.equiv)} ${esc(pl(p.medida2,p.equiv))}`:""}${p.bolsas&&p.bolsas.length?` · bolsas de ${p.bolsas.map(fn).join(" y ")} ${esc(p.unidad)}`:""}</p>
+ <div class="kpi"><div><b style="color:${p.stock<=0?"var(--red)":bajo(p)?"var(--acc)":"var(--ink)"}">${fn(p.stock)}</b><span>hay ahora</span></div><div><b>${p.referencia?fn(p.referencia):"–"}</b><span>después del pedido</span></div><div><b>${p.referencia?fn(Math.round(p.referencia*AVISO*10)/10):"–"}</b><span>avisa con</span></div></div>
+ <div class="lbl">Últimos movimientos</div>
+ ${ms.length?`<div class="hist">${ms.map(m=>`<div class="${tipoCls(m.tipo)}">${esc(textoMov(m))}<small>${esc(cuando(m.fecha))} · ${esc(m.quien)}${m.para?" · "+esc(m.para):""}${m.nota?" · "+esc(m.nota):""}</small></div>`).join("")}</div>`:`<p class="sub">Todavía no tiene movimientos.</p>`}
+ <div class="btns adm" style="margin-top:12px"><button class="b" data-act="contar" data-id="${esc(id)}">🔢 Contar lo que hay</button><button class="b" data-act="editar" data-id="${esc(id)}">✏️ Cambiar datos</button></div>
+ <div class="btns" style="margin-top:8px"><button class="b full" data-act="cerrar">Cerrar</button></div>`)}
+function abrirContar(id){const p=prod(id);if(!p)return;
+ abrir(`<h2>🔢 Contar ${esc(p.nombre)}</h2><p class="sub">Poné lo que hay de verdad. El stock se corrige y queda anotado.</p>
+ <label class="f"><span>Hay ahora (${esc(p.unidad)})</span><input id="cHay" inputmode="decimal" value="${fn(p.stock)}"></label>
+ <label class="f"><span>Nota (opcional)</span><input id="cNota" placeholder="Ej: conteo del viernes"></label>
+ <div id="cErr" class="lerr"></div>
+ <div class="btns"><button class="b" data-act="volverProd" data-id="${esc(id)}">Cancelar</button><button class="b p" data-act="guardarContar" data-id="${esc(id)}">Guardar</button></div>`);
+ setTimeout(()=>{const i=$("cHay");i.focus();i.select()},50)}
+function abrirEditar(id){const p=id?prod(id):{nombre:"",categoria:S.cat!=="Todo"?S.cat:"Almacén",unidad:"kg",minimo:0,habitual:0,activo:true,stock:0,medida2:"",equiv:0,bolsas:[]};if(!p)return;
+ const cats=[...new Set([...CATS,...S.prods.map(x=>x.categoria),"Otro"])];
+ abrir(`<h2>${id?"✏️ "+esc(p.nombre):"＋ Producto nuevo"}</h2><p class="sub">${id?"Cambiá lo que necesites.":"Se agrega a la despensa: aparece en Stock, Sacar y Llegó."}</p>
+ <label class="f"><span>Nombre</span><input id="eNom" value="${esc(p.nombre)}" maxlength="60" placeholder="Ej: Aceite"></label>
+ <div class="row"><label class="f"><span>Grupo</span><select id="eCat">${cats.map(c=>`<option ${c===p.categoria?"selected":""}>${esc(c)}</option>`).join("")}</select></label>
+ <label class="f"><span>Se cuenta en</span><input id="eUni" value="${esc(p.unidad)}" maxlength="12" list="unis"></label></div>
+ <datalist id="unis"><option>kg</option><option>paq</option><option>L</option><option>u</option><option>rollo</option><option>lata</option><option>sobre</option><option>caja</option></datalist>
+ <label class="f"><span>Viene en bolsas de… (opcional, separadas por coma; ej.: 3, 5)</span><input id="eBol" inputmode="decimal" value="${esc((p.bolsas||[]).map(fn).join(", "))}" placeholder="Ej: 25"></label>
+ <div class="row"><label class="f"><span>También se saca en (opcional)</span><input id="eMed2" value="${esc(p.medida2||"")}" maxlength="15" placeholder="Ej: taza" list="meds"></label>
+ <label class="f"><span>¿Cuántas en 1 ${esc(p.unidad)}?</span><input id="eEq" inputmode="decimal" value="${p.equiv?fn(p.equiv):""}" placeholder="Ej: 2"></label></div>
+ <datalist id="meds"><option>taza</option><option>cucharada</option><option>vaso</option></datalist>
+ <input id="eMin" type="hidden" value="${fn(p.minimo)}"><label class="f"><span>Lo que suele llegar (para la lista de pedido)</span><input id="eHab" inputmode="decimal" value="${fn(p.habitual)}"></label>
+ ${id?"":`<label class="f"><span>Hay ahora (opcional)</span><input id="eStock" inputmode="decimal" value="0"></label>`}
+ <div id="eErr" class="lerr"></div>
+ <div class="btns"><button class="b" data-act="${id?"volverProd":"cerrar"}" data-id="${esc(id||"")}">Cancelar</button><button class="b p" data-act="guardarProd" data-id="${esc(id||"")}">Guardar</button></div>`)}
+
+/* --- Sacar: para una comida o para mandar a otra casa --- */
+const esEnvio=()=>S.para.indexOf("env:")===0;
+const destino=()=>esEnvio()?S.para.slice(4):"";
+const medDe=p=>{const m2=tiene2(p),k=S.medS[p.id]||(m2?"medida2":"principal");return k==="medida2"&&m2?{k,n:pl(p.medida2,2),kg:1/p.equiv,step:1}:{k:"principal",n:p.unidad,kg:1,step:(p.unidad==="kg"&&m2)?0.5:1}};
+function rSacar(){
+ const adm=esAdmin();$("sNoAdm").hidden=adm;
+ ["meals","dests"].forEach(i=>$(i).hidden=!adm);document.querySelectorAll("#v-sacar .paso, #v-sacar>div[style]").forEach(e=>e.hidden=!adm);
+ if(!adm){$("sCuerpo").hidden=true;$("sAyuda").innerHTML="";return}
+ $("sAyuda").innerHTML=esEnvio()?`🚐 <b>Envío a ${esc(destino())}:</b> escribí quién lo pidió y quién lo manda, marcá lo que mandás y tocá "Descontar y mandar". Se resta de esta despensa y queda en 🕘 Registro.`
+  :S.para?`🍽️ Marcá con <b>+</b> lo que sacás para <b>${art(S.para)}</b>, o escribí el número. Cocoa y azúcar van en <b>tazas</b> (1 taza = ½ kg); el azúcar también en kg de a ½. Condimentos: <b>+1 cuando abrís un paquete nuevo</b>.`
+  :`🍽️ <b>Sacar:</b> 1) tocá la comida o, en azul, la casa a la que mandás. 2) marcá todo lo que sale. 3) Descontar. Se resta todo junto de lo que hay.`;
+ $("meals").innerHTML=COMIDAS.map(([n,i])=>`<button class="meal ${S.para===n?"on":""}" data-para="${n}">${i} ${n}</button>`).join("");
+ $("dests").innerHTML=DESTINOS.map(([n,i])=>`<button class="meal env ${S.para==="env:"+n?"on":""}" data-para="env:${esc(n)}">${i} ${esc(n)}</button>`).join("");
+ $("sCuerpo").hidden=!S.para;if(!S.para)return;
+ $("envBox").hidden=!esEnvio();if(esEnvio())$("envTit").textContent="Datos del envío a "+destino();
+ $("sPaso2").textContent=esEnvio()?"2. ¿Qué le mandás a "+destino()+"?":"2. ¿Qué sacás para "+art(S.para)+"?";
+ const ps=activos().filter(p=>p.stock>0);
+ $("sLista").innerHTML=ps.length?grupos(ps).map(([c,l])=>`<div class="grp">${esc(c)}</div><div class="tar">`+l.map(p=>{
+  const m=medDe(p),q=S.carro[p.id]||0;
+  return `<div class="tr ${q?"":"cero"} col" data-sid="${esc(p.id)}"><div style="display:flex;align-items:center;gap:8px;width:100%"><div class="x"><b>${esc(p.nombre)}</b><small>${esPaq(p)?`Hay ${fn(p.stock)} paquetes · + = abrí uno`:`Hay ${fn(p.stock)} ${esc(p.unidad)}${tiene2(p)?` = ${fn(en2(p))} ${esc(pl(p.medida2,2))}`:""}`}</small></div>
+  <div class="step"><button type="button" data-act="sMenos" data-id="${esc(p.id)}" aria-label="Menos ${esc(p.nombre)}">−</button><input data-sin="${esc(p.id)}" inputmode="decimal" value="${q?fn(q):""}" placeholder="0" aria-label="Cuánto de ${esc(p.nombre)}"><button type="button" data-act="sMas" data-id="${esc(p.id)}" aria-label="Más ${esc(p.nombre)}">+</button><span class="u">${esc(m.n)}</span></div></div>
+  ${tiene2(p)?`<div class="medi"><span>Lo saco en:</span><button data-med="medida2" data-id="${esc(p.id)}" class="${m.k==="medida2"?"on":""}">${esc(pl(p.medida2,2))}</button><button data-med="principal" data-id="${esc(p.id)}" class="${m.k==="principal"?"on":""}">${esc(p.unidad)}</button></div>`:""}</div>`}).join("")+`</div>`).join(""):`<div class="vacio">No hay nada con stock para sacar.</div>`;
+ resumenSacar()}
+function lineaSacar(p,q){const m=medDe(p);return esPaq(p)?fn(q)+" paquete"+(q===1?"":"s")+" de "+p.nombre:fn(q)+" "+(m.k==="medida2"?pl(p.medida2,q):p.unidad)+" de "+p.nombre+(m.k==="medida2"?" ("+fn(q*m.kg)+" "+p.unidad+")":"")}
+function resumenSacar(){const el=Object.entries(S.carro).filter(([,v])=>v>0).map(([id,v])=>[prod(id),v]).filter(x=>x[0]);
+ $("sResumen").textContent=el.length?"Se va a descontar:\n"+el.map(([p,v])=>"• "+lineaSacar(p,v)).join("\n"):"Todavía no marcaste nada.";
+ $("sBtn").textContent=esEnvio()?"Descontar y mandar a "+destino():"Descontar "+delA(S.para)}
+function ponerSacar(id,v){const p=prod(id);if(!p)return;const m=medDe(p),max=Math.round(p.stock/m.kg*10)/10;v=Math.max(0,Math.min(max,Math.round(v*100)/100));S.carro[id]=v;
+ const r=document.querySelector(`[data-sid="${CSS.escape(id)}"]`);if(r){r.classList.toggle("cero",!v);r.querySelector("input").value=v?fn(v):""}$("sErr").textContent="";resumenSacar()}
+$("sLista").addEventListener("input",e=>{const id=e.target.dataset.sin;if(!id)return;const v=pn(e.target.value);S.carro[id]=isNaN(v)?0:Math.max(0,v);e.target.closest(".tr").classList.toggle("cero",!S.carro[id]);$("sErr").textContent="";resumenSacar()});
+
+/* --- Llegó el pedido --- */
+function rLlego(){
+ const adm=esAdmin();$("lNoAdm").hidden=adm;["llegoBtn","llegoLista"].forEach(i=>$(i).hidden=!adm);$("llegoNota").closest(".f").hidden=!adm;if(!adm)return;
+ const ps=activos();
+ if(!ps.length){$("llegoLista").innerHTML=`<div class="vacio">Cargando…</div>`;return}
+ $("llegoLista").innerHTML=grupos(ps).map(([c,l])=>`<div class="grp">${esc(c)}</div><div class="tar">`+l.map(p=>{const v=S.llego[p.id]||0;
+  return `<div class="tr ${v?"":"cero"} col" data-lid="${esc(p.id)}"><div style="display:flex;align-items:center;gap:8px;width:100%"><div class="x"><b>${esc(p.nombre)}</b><small>Ya hay ${fn(p.stock)} ${esc(p.unidad)}${esPaq(p)&&p.categoria==="Condimentos"?" · de 1 kg o ½ kg cuentan igual":""}</small></div>
+  <div class="step"><button type="button" data-act="lMenos" data-id="${esc(p.id)}" aria-label="Menos ${esc(p.nombre)}">−</button><input data-lin="${esc(p.id)}" inputmode="decimal" value="${v?fn(v):""}" placeholder="0" aria-label="${esc(p.nombre)} que llegó"><button type="button" data-act="lMas" data-id="${esc(p.id)}" aria-label="Más ${esc(p.nombre)}">+</button><span class="u">${esc(p.unidad)}</span></div></div>
+  ${p.bolsas&&p.bolsas.length?`<div class="medi">${p.bolsas.map(b=>`<button class="bolsa" data-bolsa="${b}" data-id="${esc(p.id)}">+ ${p.nombre==="Cocoa"?"Paquete":b===1?"Bolsita":"Bolsa"} de ${fn(b)} ${esc(p.unidad)}</button>`).join("")}</div>`:""}</div>`}).join("")+`</div>`).join("");
+ contarLlego()}
+function contarLlego(){const n=Object.values(S.llego).filter(v=>v>0).length;$("llegoBtn").textContent=n?`Guardar lo que llegó (${n} producto${n===1?"":"s"})`:"Guardar lo que llegó"}
+function ponerLlego(id,v){v=Math.max(0,Math.round(v*1000)/1000);S.llego[id]=v;const r=document.querySelector(`[data-lid="${CSS.escape(id)}"]`);if(r){r.classList.toggle("cero",!v);r.querySelector("input").value=v?fn(v):""}$("llegoErr").textContent="";contarLlego()}
+$("llegoLista").addEventListener("input",e=>{const id=e.target.dataset.lin;if(!id)return;const v=pn(e.target.value);S.llego[id]=isNaN(v)?0:Math.max(0,v);e.target.closest(".tr").classList.toggle("cero",!S.llego[id]);contarLlego()});
+
+/* --- Registro: calendario --- */
+const fechaDe=m=>{const d=new Date(m.fecha);return isNaN(d)?"":iso(d)};
+function rReg(){
+ const {y,m}=S.cal,hoy=iso(new Date()),off=(new Date(y,m,1).getDay()+6)%7,nd=new Date(y,m+1,0).getDate();
+ $("mesTxt").textContent=MESES[m].charAt(0).toUpperCase()+MESES[m].slice(1)+" "+y;
+ const porDia={};S.movs.forEach(mv=>{const f=fechaDe(mv);if(!f||mv.anulado)return;(porDia[f]=porDia[f]||[]).push(mv)});
+ let h=["L","M","M","J","V","S","D"].map(d=>`<div class="h">${d}</div>`).join("")+"<button class='v' tabindex='-1' aria-hidden='true'></button>".repeat(off);
+ for(let d=1;d<=nd;d++){const f=y+"-"+String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0"),l=porDia[f]||[];
+  const pto=l.some(x=>x.tipo==="Entrada")?"var(--ok)":l.some(x=>String(x.para).indexOf("Envío a")===0)?"var(--blue)":l.length?"var(--acc)":"";
+  h+=`<button data-dia="${f}" class="${f===S.dSel?"sel":""} ${f===hoy?"hoy":""}" aria-label="${d} de ${MESES[m]}">${d}${pto?`<i style="background:${pto}"></i>`:""}</button>`}
+ $("mes").innerHTML=h;
+ const dS=new Date(S.dSel+"T12:00:00");
+ $("diaTxt").textContent=DIAS[dS.getDay()].charAt(0).toUpperCase()+DIAS[dS.getDay()].slice(1)+" "+dS.getDate()+" de "+MESES[dS.getMonth()];
+ const del=S.movs.filter(mv=>fechaDe(mv)===S.dSel);
+ const hora=mv=>{const d=new Date(mv.fecha);return isNaN(d)?"":String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
+ const items=l=>l.map(mv=>`<div class="it ${mv.anulado?"anul":""}"><span>• ${esc(textoMov(mv))}${mv.anulado?` <em>(anulado)</em>`:""}</span>${!mv.anulado?`<button class="adm" data-act="anular" data-id="${esc(mv.id)}" aria-label="Anular">Anular</button>`:""}</div>`).join("");
+ const quienes=l=>[...new Set(l.map(mv=>hora(mv)+" · "+mv.quien))].join(" / ");
+ let out="";
+ const lotes=(l)=>{const g={};l.forEach(mv=>{const k=mv.lote||mv.id;(g[k]=g[k]||[]).push(mv)});return Object.values(g)};
+ lotes(del.filter(mv=>mv.tipo==="Entrada")).forEach(l=>out+=`<div class="rc ped"><div class="ri">🚚</div><div class="rx"><b>Llegó el pedido</b><small>${esc(quienes(l))}${l[0].nota?" · "+esc(l[0].nota):""}</small>${items(l)}</div></div>`);
+ COMIDAS.forEach(([n,ic])=>{const l=del.filter(mv=>mv.tipo==="Salida"&&mv.para===n);
+  out+=l.length?`<div class="rc"><div class="ri">${ic}</div><div class="rx"><b>${n}</b><small>${esc(quienes(l))}</small>${items(l)}</div></div>`
+   :`<div class="rc nada"><div class="ri">${ic}</div><div class="rx"><b>${n}</b><small>No se cargó nada</small></div></div>`});
+ lotes(del.filter(mv=>mv.tipo==="Salida"&&String(mv.para).indexOf("Envío a")===0)).forEach(l=>out+=`<div class="rc env"><div class="ri">${l[0].para.indexOf("Camino Seguro")>=0?"🚐":"🏠"}</div><div class="rx"><b>${esc(l[0].para)}</b><small>${hora(l[0])} · Pidió: ${esc(l[0].pidio||"–")} · Mandó: ${esc(l[0].quien)}</small>${items(l)}</div></div>`);
+ const otras=del.filter(mv=>mv.tipo==="Conteo"||(mv.tipo==="Salida"&&!COMIDAS.some(c=>c[0]===mv.para)&&String(mv.para).indexOf("Envío a")!==0));
+ if(otras.length)out+=`<div class="rc"><div class="ri">🔢</div><div class="rx"><b>Otros movimientos</b><small>Conteos y salidas sueltas</small>${items(otras)}</div></div>`;
+ $("diaLista").innerHTML=out}
+
+/* --- Productos --- */
+function rProd(){
+ const act=activos(),gua=S.prods.filter(p=>!p.activo),adm=esAdmin();
+ $("prodLista").innerHTML=`<div class="grp">Se usan ahora</div>`+(act.map(p=>`<div class="pr"><span>${esc(p.nombre)}<small>${esc(p.categoria)} · ${esc(p.unidad)}</small></span>${adm?`<button data-act="editar" data-id="${esc(p.id)}" aria-label="Cambiar ${esc(p.nombre)}">✏️</button><button class="rojo" data-act="quitar" data-id="${esc(p.id)}">Quitar</button>`:""}</div>`).join("")||`<div class="vacio">Cargando…</div>`)
+  +`<div class="grp">Guardados para otra temporada</div>`+(gua.map(p=>`<div class="pr gu"><span>${esc(p.nombre)}<small>${esc(p.categoria)}</small></span>${adm?`<button class="verde" data-act="volver" data-id="${esc(p.id)}">Volver a usar</button>`:""}</div>`).join("")||`<p class="sub" style="color:var(--mut);font-size:13px">Ninguno. Lo que quites aparece acá.</p>`)}
 
 /* ===== Botones ===== */
 $("q").addEventListener("input",e=>{S.q=e.target.value;rLista()});
 document.addEventListener("click",async ev=>{
- const el=ev.target.closest("[data-v],[data-cat],[data-para],[data-htipo],[data-act],.t[data-id]");if(!el)return;
+ const el=ev.target.closest("[data-v],[data-cat],[data-para],[data-dia],[data-med],[data-bolsa],[data-act],.t[data-id]");if(!el)return;
  if(el.closest("#login")&&el.dataset.act!=="instalar")return;
  if(el.dataset.v){verV(el.dataset.v);return}
  if(el.dataset.cat){S.cat=el.dataset.cat;rStock();return}
- if(el.dataset.para){S.sPara=el.dataset.para;document.querySelectorAll("#sPara button").forEach(b=>b.classList.toggle("on",b===el));return}
- if(el.dataset.htipo){S.hTipo=el.dataset.htipo;rHist();return}
+ if(el.dataset.para){if(S.para!==el.dataset.para){S.para=el.dataset.para;S.carro={};S.medS={};$("sNota").value="";$("sErr").textContent="";
+   if(esEnvio()){$("ePidio").value="";$("eManda").value=cred?cred.correo.split("@")[0]:""}}rSacar();$("sCuerpo").scrollIntoView({behavior:"smooth",block:"start"});return}
+ if(el.dataset.dia){S.dSel=el.dataset.dia;rReg();return}
+ if(el.dataset.med){S.medS[el.dataset.id]=el.dataset.med;S.carro[el.dataset.id]=0;rSacar();return}
+ if(el.dataset.bolsa){ponerLlego(el.dataset.id,(S.llego[el.dataset.id]||0)+Number(el.dataset.bolsa));return}
  if(el.classList.contains("t")&&!el.dataset.act){abrirProd(el.dataset.id);return}
  const a=el.dataset.act,id=el.dataset.id||"";
  if(a==="cerrar")cerrar();
@@ -447,11 +530,13 @@ document.addEventListener("click",async ev=>{
  else if(a==="salir"){cerrar();salir(false)}
  else if(a==="seguridad"){cerrar();try{AlasBloqueo.configurar()}catch(x){toast("No se pudo abrir la seguridad")}}
  else if(a==="instalar")instalar();
+ else if(a==="verFaltan")verFaltan();
+ else if(a==="copiar")copiar();
+ else if(a==="imprimir")imprimir();
  else if(a==="nuevoProd")abrirEditar("");
  else if(a==="editar")abrirEditar(id);
  else if(a==="contar")abrirContar(id);
  else if(a==="volverProd"){if(id)abrirProd(id);else cerrar()}
- else if(a==="sacarEste"){cerrar();S.sId=id;S.sMed="medida2";$("sCant").value="1";verV("sacar")}
  else if(a==="guardarContar"){const v=pn($("cHay").value);if(isNaN(v)||v<0){$("cErr").textContent="Poné un número (0 o más).";return}
   if(await enviar("contar",{id,hay:v,nota:$("cNota").value.trim()},el,"Stock corregido",$("cErr"))){render();abrirProd(id)}}
  else if(a==="guardarProd"){const nom=$("eNom").value.trim(),mn=pn($("eMin").value),hb=pn($("eHab").value),st=$("eStock")?pn($("eStock").value):0;
@@ -459,30 +544,36 @@ document.addEventListener("click",async ev=>{
   if([mn,hb,st].some(x=>isNaN(x)||x<0)){$("eErr").textContent="Revisá los números: tienen que ser 0 o más.";return}
   const m2=$("eMed2").value.trim(),eq=m2?pn($("eEq").value):0;
   if(m2&&(isNaN(eq)||eq<=0)){$("eErr").textContent=`Poné cuántas ${pl(m2,2)} hay en 1 ${$("eUni").value.trim()||"u"}.`;return}
-  const p={id,nombre:nom,categoria:$("eCat").value,unidad:$("eUni").value.trim()||"u",minimo:mn,habitual:hb,activo:$("eAct")?$("eAct").checked:true,stock:st,medida2:m2,equiv:eq};
-  if(await enviar("guardarProducto",{producto:p},el,id?"Cambios guardados":"Producto agregado",$("eErr"))){S.llego=null;render();cerrar()}}
+  const p={id,nombre:nom,categoria:$("eCat").value,unidad:$("eUni").value.trim()||"u",minimo:mn,habitual:hb,activo:id?prod(id).activo:true,stock:st,medida2:m2,equiv:eq,bolsas:$("eBol").value};
+  if(await enviar("guardarProducto",{producto:p},el,id?"Cambios guardados":"Producto agregado",$("eErr"))){render();cerrar()}}
+ else if(a==="quitar"||a==="volver"){const p=prod(id);if(!p)return;
+  const datos={id,nombre:p.nombre,categoria:p.categoria,unidad:p.unidad,minimo:p.minimo,habitual:p.habitual,activo:a==="volver",medida2:p.medida2,equiv:p.equiv,bolsas:(p.bolsas||[]).join(",")};
+  if(await enviar("guardarProducto",{producto:datos},el,a==="quitar"?p.nombre+" quedó guardado para otra temporada":p.nombre+" vuelve a la lista",null))render()}
  else if(a==="lMenos"||a==="lMas"){ponerLlego(id,(S.llego[id]||0)+(a==="lMas"?1:-1))}
- else if(a==="llegoHabitual"){llegoDeSiempre();rLlego()}
- else if(a==="llegoCero"){activos().forEach(p=>S.llego[p.id]=0);rLlego()}
- else if(a==="guardarLlego"){const items=Object.entries(S.llego||{}).filter(([,v])=>v>0).map(([id,cant])=>({id,cant}));
-  if(!items.length){$("llegoErr").textContent="Todas las cantidades están en 0: no hay nada para guardar.";return}
+ else if(a==="sMenos"||a==="sMas"){const p=prod(id);if(p)ponerSacar(id,(S.carro[id]||0)+(a==="sMas"?1:-1)*medDe(p).step)}
+ else if(a==="guardarLlego"){const items=Object.entries(S.llego).filter(([,v])=>v>0).map(([id,cant])=>({id,cant}));
+  if(!items.length){$("llegoErr").textContent="Todo está en 0: no hay nada para guardar.";return}
   abrir(`<h2>¿Guardar el pedido?</h2><p class="sub">Se suman al stock ${items.length} producto${items.length===1?"":"s"}:</p><div class="info">${items.map(x=>{const p=prod(x.id);return `<div><span style="flex:1">${esc(p?p.nombre:x.id)}</span><b>${fn(x.cant)} ${esc(p?p.unidad:"")}</b></div>`}).join("")}</div>
   <div id="cfErr" class="lerr" style="margin-top:8px"></div><div class="btns"><button class="b" data-act="cerrar">Volver</button><button class="b p" data-act="confirmarLlego">Sí, guardar</button></div>`)}
- else if(a==="confirmarLlego"){const items=Object.entries(S.llego||{}).filter(([,v])=>v>0).map(([id,cant])=>({id,cant}));
-  if(await enviar("recibir",{items,nota:$("llegoNota").value.trim()},el,"Pedido guardado: se sumó al stock",$("cfErr"))){cerrar();S.llego=null;$("llegoNota").value="";$("llegoErr").textContent="";verV("stock")}}
- else if(a==="sMenos"||a==="sMas"){const v=pn($("sCant").value);$("sCant").value=fn(Math.max(1,(isNaN(v)?0:v)+(a==="sMas"?1:-1)));$("sErr").textContent=""}
- else if(a==="guardarSacar"){const p=prod(S.sId),c=pn($("sCant").value);
-  if(!p){$("sErr").textContent="Elegí un producto.";return}
-  if(isNaN(c)||c<=0){$("sErr").textContent="Poné cuánto se saca.";return}
-  const usa2=tiene2(p)&&S.sMed==="medida2",enU=usa2?Math.round(c/p.equiv*1000)/1000:c,txtC=usa2?`${fn(c)} ${pl(p.medida2,c)}`:`${fn(c)} ${p.unidad}`;
-  if(enU>p.stock){$("sErr").textContent=`Solo hay ${fn(p.stock)} ${p.unidad}${tiene2(p)?` (≈ ${fn(en2(p))} ${pl(p.medida2,2)})`:""} de ${p.nombre}. Si en realidad hay más, contalo primero.`;return}
-  if(await enviar("sacar",{id:p.id,cant:c,medida:usa2?"medida2":"principal",para:S.sPara,nota:$("sNota").value.trim()},el,`Listo: se descontaron ${txtC} de ${p.nombre}`,$("sErr"))){$("sCant").value="1";$("sNota").value="";render()}}
+ else if(a==="confirmarLlego"){const items=Object.entries(S.llego).filter(([,v])=>v>0).map(([id,cant])=>({id,cant}));
+  if(await enviar("recibir",{items,nota:$("llegoNota").value.trim()},el,"Pedido guardado: se sumó al stock",$("cfErr"))){cerrar();S.llego={};$("llegoNota").value="";S.dSel=iso(new Date());verV("stock")}}
+ else if(a==="descontar"){
+  const el2=Object.entries(S.carro).filter(([,v])=>v>0).map(([id,v])=>[prod(id),v]).filter(x=>x[0]);
+  if(!el2.length){$("sErr").textContent="Marcá al menos una cosa con + antes de descontar.";return}
+  for(const [p,v] of el2){if(v*medDe(p).kg>p.stock+1e-9){$("sErr").textContent=`Solo hay ${fn(p.stock)} ${p.unidad} de ${p.nombre}. Si hay más, contalo primero.`;return}}
+  const datos={items:el2.map(([p,v])=>({id:p.id,cant:v,medida:medDe(p).k})),nota:$("sNota").value.trim()};
+  if(esEnvio()){datos.destino=destino();datos.pidio=$("ePidio").value.trim();datos.manda=$("eManda").value.trim();
+   if(!datos.pidio){$("sErr").textContent="Escribí quién lo pidió.";$("ePidio").focus();return}
+   if(!datos.manda){$("sErr").textContent="Escribí quién lo manda.";$("eManda").focus();return}}
+  else datos.para=S.para;
+  const txt=esEnvio()?"Envío a "+destino()+" descontado":"Se descontó lo "+delA(S.para);
+  if(await enviar("salida",datos,el,txt+". Quedó en 🕘 Registro.",$("sErr"))){S.carro={};S.medS={};S.para="";$("sNota").value="";S.dSel=iso(new Date());verV("stock")}}
+ else if(a==="mesAnt"||a==="mesSig"){let {y,m}=S.cal;m+=a==="mesSig"?1:-1;if(m<0){m=11;y--}if(m>11){m=0;y++}S.cal={y,m};rReg()}
  else if(a==="anular"){const m=S.movs.find(x=>x.id===id);if(!m)return;
   abrir(`<h2>¿Anular este movimiento?</h2><p class="sub">${esc(textoMov(m))} · ${esc(cuando(m.fecha))}</p><p class="sub">El stock vuelve a como estaba antes. Queda anotado que se anuló.</p><div id="aErr" class="lerr"></div><div class="btns"><button class="b" data-act="cerrar">No</button><button class="b p" data-act="confirmarAnular" data-id="${esc(id)}">Sí, anular</button></div>`)}
  else if(a==="confirmarAnular"){if(await enviar("anular",{id},el,"Movimiento anulado",$("aErr"))){cerrar();render()}}
- else if(a==="copiar")copiar();
- else if(a==="imprimir")imprimir();
 });
+document.addEventListener("input",e=>{if(e.target.id==="ePidio"||e.target.id==="eManda")$("sErr").textContent=""});
 
 /* ===== PIN y huella (el mismo de Internos, Cuartos y Ficha) ===== */
 function seguridadTxt(){try{return AlasBloqueo.activo()?"PIN activado · cambiar":"Activar PIN y huella"}catch(x){return "PIN y huella"}}
