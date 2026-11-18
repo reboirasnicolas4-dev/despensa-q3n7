@@ -157,6 +157,7 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
  <div id="v-sacar" hidden>
   <div class="ficha"><h3>➖ Sacar de la despensa</h3><p>Lo que se usa en la cocina o en la limpieza. Se descuenta del stock y queda anotado con tu usuario.</p></div>
   <label class="f"><span>Producto</span><select id="sProd"></select></label>
+  <div id="sMedBox"><div class="lbl">Se saca en</div><div class="qk" id="sMed"></div></div>
   <div class="lbl">Cantidad</div>
   <div class="step" style="margin-bottom:6px"><button type="button" data-act="sMenos" aria-label="Menos">−</button><input id="sCant" inputmode="decimal" value="1" aria-label="Cantidad"><button type="button" data-act="sMas" aria-label="Más">+</button><span class="u" id="sUni" style="width:auto;font-size:14px"></span></div>
   <div id="sHay" style="color:var(--mut);font-size:13px;margin-bottom:6px"></div>
@@ -200,7 +201,10 @@ const CATS=["Almacén","Frío","Limpieza"];
 const PARA=["Desayuno","Almuerzo","Merienda","Cena","Limpieza","Otro"];
 const DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 let cred=null,cargando=false,ocupado=false;
-const S={rol:"",prods:[],movs:[],v:"stock",cat:"Todo",q:"",llego:null,sId:"",sPara:"Almuerzo",hTipo:"Todo"};
+const S={rol:"",prods:[],movs:[],v:"stock",cat:"Todo",q:"",llego:null,sId:"",sMed:"medida2",sPara:"Almuerzo",hTipo:"Todo"};
+const pl=(m,n)=>n===1||/s$/i.test(m)?m:m+(/[aeiouáéíóú]$/i.test(m)?"s":"es");
+const tiene2=p=>!!(p&&p.medida2&&p.equiv>0);
+const en2=p=>Math.round(p.stock*p.equiv*10)/10;
 const esAdmin=()=>S.rol==="Admin";
 const prod=id=>S.prods.find(p=>p.id===id);
 const activos=()=>S.prods.filter(p=>p.activo);
@@ -313,7 +317,7 @@ function rLista(){
  let ps=S.prods.filter(p=>(S.cat==="Todo"||p.categoria===S.cat)&&(!q||p.nombre.toLowerCase().includes(q)));
  const fila=p=>{const cero=p.stock<=0,poco=!cero&&bajo(p);
   return `<button class="t ${cero&&p.activo?"cero":poco&&p.activo?"urg":""}" data-id="${esc(p.id)}"><div class="d"><b>${fn(p.stock)}</b><small>${esc(p.unidad)}</small></div>
-  <div class="i"><div class="n">${esc(p.nombre)}</div><div class="s">Mínimo ${fn(p.minimo)} · llegan ${fn(p.habitual)} ${esc(p.unidad)}</div>
+  <div class="i"><div class="n">${esc(p.nombre)}</div><div class="s">${tiene2(p)?`≈ ${fn(en2(p))} ${esc(pl(p.medida2,2))} · `:""}Mínimo ${fn(p.minimo)} · llegan ${fn(p.habitual)} ${esc(p.unidad)}</div>
   <div class="chips">${!p.activo?`<span class="chip">No se compra más</span>`:cero?`<span class="chip cero">Sin stock</span>`:poco?`<span class="chip sin">Queda poco</span>`:""}</div></div></button>`};
  if(!ps.length){$("lista").innerHTML=`<div class="vacio">${S.prods.length?"No hay productos con ese nombre.":"Cargando…"}</div>`;return}
  const act=ps.filter(p=>p.activo),ina=ps.filter(p=>!p.activo);
@@ -324,14 +328,14 @@ function rLista(){
 
 function tipoCls(t){return t==="Entrada"?"e":t==="Salida"?"s":"c"}
 function textoMov(m){const c=fn(Math.abs(m.cantidad))+" "+m.unidad;
- return m.tipo==="Entrada"?"Llegaron "+c+" de "+m.producto:m.tipo==="Salida"?"Se sacó "+c+" de "+m.producto:"Se contó "+m.producto+": quedó en "+fn(m.stockDespues)+" "+m.unidad}
+ return m.tipo==="Entrada"?"Llegaron "+c+" de "+m.producto:m.tipo==="Salida"?(m.detalle?"Se sacó "+m.detalle+" de "+m.producto+" ("+c+")":"Se sacó "+c+" de "+m.producto):"Se contó "+m.producto+": quedó en "+fn(m.stockDespues)+" "+m.unidad}
 function cuando(iso){const d=new Date(iso);if(isNaN(d))return"";const hoy=new Date(),ay=new Date(Date.now()-864e5),mismo=(a,b)=>a.toDateString()===b.toDateString();
  const h=String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");
  return(mismo(d,hoy)?"hoy":mismo(d,ay)?"ayer":DIAS[d.getDay()]+" "+d.getDate()+"/"+(d.getMonth()+1))+" "+h}
 
 function abrirProd(id){const p=prod(id);if(!p)return;
  const ms=S.movs.filter(m=>m.productoId===id&&!m.anulado).slice(0,8);
- abrir(`<h2>${esc(p.nombre)}</h2><p class="sub">${esc(p.categoria)} · se cuenta en ${esc(p.unidad)}${p.activo?"":" · ya no se compra"}</p>
+ abrir(`<h2>${esc(p.nombre)}</h2><p class="sub">${esc(p.categoria)} · se cuenta en ${esc(p.unidad)}${tiene2(p)?` · se saca en ${esc(pl(p.medida2,2))} (1 ${esc(p.unidad)} = ${fn(p.equiv)} ${esc(pl(p.medida2,p.equiv))}) · hay ≈ ${fn(en2(p))} ${esc(pl(p.medida2,2))}`:""}${p.activo?"":" · ya no se compra"}</p>
  <div class="kpi"><div><b style="color:${p.stock<=0?"var(--red)":bajo(p)?"var(--acc)":"var(--ink)"}">${fn(p.stock)}</b><span>hay ahora</span></div><div><b>${fn(p.minimo)}</b><span>mínimo</span></div><div><b>${fn(p.habitual)}</b><span>llegan siempre</span></div></div>
  <div class="lbl">Últimos movimientos</div>
  ${ms.length?`<div class="hist">${ms.map(m=>`<div class="${tipoCls(m.tipo)}">${esc(textoMov(m))}<small>${esc(cuando(m.fecha))} · ${esc(m.quien)}${m.para?" · "+esc(m.para):""}${m.nota?" · "+esc(m.nota):""}</small></div>`).join("")}</div>`:`<p class="sub">Todavía no tiene movimientos.</p>`}
@@ -346,7 +350,7 @@ function abrirContar(id){const p=prod(id);if(!p)return;
  <div class="btns"><button class="b" data-act="volverProd" data-id="${esc(id)}">Cancelar</button><button class="b p" data-act="guardarContar" data-id="${esc(id)}">Guardar</button></div>`);
  setTimeout(()=>{const i=$("cHay");i.focus();i.select()},50)}
 
-function abrirEditar(id){const p=id?prod(id):{nombre:"",categoria:S.cat!=="Todo"?S.cat:"Almacén",unidad:"u",minimo:0,habitual:0,activo:true,stock:0};if(!p)return;
+function abrirEditar(id){const p=id?prod(id):{nombre:"",categoria:S.cat!=="Todo"?S.cat:"Almacén",unidad:"u",minimo:0,habitual:0,activo:true,stock:0,medida2:"",equiv:0};if(!p)return;
  const cats=[...new Set([...CATS,...S.prods.map(x=>x.categoria),"Otro"])];
  abrir(`<h2>${id?"✏️ "+esc(p.nombre):"＋ Producto nuevo"}</h2><p class="sub">${id?"Cambiá lo que necesites.":"Se agrega a la lista de la despensa."}</p>
  <label class="f"><span>Nombre</span><input id="eNom" value="${esc(p.nombre)}" maxlength="60" placeholder="Ej: Aceite"></label>
@@ -355,6 +359,9 @@ function abrirEditar(id){const p=id?prod(id):{nombre:"",categoria:S.cat!=="Todo"
  <datalist id="unis"><option>kg</option><option>paq</option><option>L</option><option>u</option><option>rollo</option><option>lata</option><option>sobre</option><option>caja</option></datalist>
  <div class="row"><label class="f"><span>Mínimo (avisa en amarillo)</span><input id="eMin" inputmode="decimal" value="${fn(p.minimo)}"></label>
  <label class="f"><span>Llega siempre en el pedido</span><input id="eHab" inputmode="decimal" value="${fn(p.habitual)}"></label></div>
+ <div class="row"><label class="f"><span>También se saca en (opcional)</span><input id="eMed2" value="${esc(p.medida2||"")}" maxlength="15" placeholder="Ej: taza" list="meds"></label>
+ <label class="f"><span id="eEqL">¿Cuántas hay en 1 ${esc(p.unidad)}?</span><input id="eEq" inputmode="decimal" value="${p.equiv?fn(p.equiv):""}" placeholder="Ej: 2"></label></div>
+ <datalist id="meds"><option>taza</option><option>cucharada</option><option>vaso</option><option>plato</option></datalist>
  ${id?`<label class="f" style="display:flex;gap:8px;align-items:center"><input id="eAct" type="checkbox" style="width:auto" ${p.activo?"checked":""}><span style="margin:0;color:var(--ink)">Se sigue comprando</span></label>`
    :`<label class="f"><span>Hay ahora (opcional)</span><input id="eStock" inputmode="decimal" value="0"></label>`}
  <div id="eErr" class="lerr"></div>
@@ -385,8 +392,13 @@ function rSacar(){
  $("sProd").innerHTML=[...new Set(ps.map(p=>p.categoria))].map(c=>`<optgroup label="${esc(c)}">`+ps.filter(p=>p.categoria===c).map(p=>`<option value="${esc(p.id)}" ${p.id===S.sId?"selected":""}>${esc(p.nombre)} (hay ${fn(p.stock)} ${esc(p.unidad)})</option>`).join("")+`</optgroup>`).join("");
  $("sPara").innerHTML=PARA.map(x=>`<button type="button" data-para="${x}" class="${S.sPara===x?"on":""}">${x}</button>`).join("");
  infoSacar()}
-function infoSacar(){const p=prod(S.sId);$("sUni").textContent=p?p.unidad:"";$("sHay").textContent=p?`Hay ${fn(p.stock)} ${p.unidad}${bajo(p)?" · ya está por debajo del mínimo":""}`:"";$("sErr").textContent=""}
-$("sProd").addEventListener("change",e=>{S.sId=e.target.value;$("sCant").value="1";infoSacar()});
+function infoSacar(){const p=prod(S.sId),dos=tiene2(p);$("sMedBox").hidden=!dos;
+ if(dos)$("sMed").innerHTML=[["medida2",pl(p.medida2,2)],["principal",p.unidad]].map(([k,l])=>`<button type="button" data-med="${k}" class="${S.sMed===k?"on":""}">${esc(l)}</button>`).join("");
+ const usa2=dos&&S.sMed==="medida2";
+ $("sUni").textContent=p?(usa2?pl(p.medida2,2):p.unidad):"";
+ $("sHay").textContent=p?`Hay ${fn(p.stock)} ${p.unidad}${dos?` (≈ ${fn(en2(p))} ${pl(p.medida2,2)})`:""}${bajo(p)?" · ya está por debajo del mínimo":""}`:"";$("sErr").textContent=""}
+$("sProd").addEventListener("change",e=>{S.sId=e.target.value;S.sMed="medida2";$("sCant").value="1";infoSacar()});
+$("sMed").addEventListener("click",e=>{const b=e.target.closest("[data-med]");if(!b)return;S.sMed=b.dataset.med;$("sCant").value="1";infoSacar()});
 $("sCant").addEventListener("input",()=>$("sErr").textContent="");
 
 /* --- Faltan --- */
@@ -439,13 +451,15 @@ document.addEventListener("click",async ev=>{
  else if(a==="editar")abrirEditar(id);
  else if(a==="contar")abrirContar(id);
  else if(a==="volverProd"){if(id)abrirProd(id);else cerrar()}
- else if(a==="sacarEste"){cerrar();S.sId=id;$("sCant").value="1";verV("sacar")}
+ else if(a==="sacarEste"){cerrar();S.sId=id;S.sMed="medida2";$("sCant").value="1";verV("sacar")}
  else if(a==="guardarContar"){const v=pn($("cHay").value);if(isNaN(v)||v<0){$("cErr").textContent="Poné un número (0 o más).";return}
   if(await enviar("contar",{id,hay:v,nota:$("cNota").value.trim()},el,"Stock corregido",$("cErr"))){render();abrirProd(id)}}
  else if(a==="guardarProd"){const nom=$("eNom").value.trim(),mn=pn($("eMin").value),hb=pn($("eHab").value),st=$("eStock")?pn($("eStock").value):0;
   if(!nom){$("eErr").textContent="Poné el nombre del producto.";return}
   if([mn,hb,st].some(x=>isNaN(x)||x<0)){$("eErr").textContent="Revisá los números: tienen que ser 0 o más.";return}
-  const p={id,nombre:nom,categoria:$("eCat").value,unidad:$("eUni").value.trim()||"u",minimo:mn,habitual:hb,activo:$("eAct")?$("eAct").checked:true,stock:st};
+  const m2=$("eMed2").value.trim(),eq=m2?pn($("eEq").value):0;
+  if(m2&&(isNaN(eq)||eq<=0)){$("eErr").textContent=`Poné cuántas ${pl(m2,2)} hay en 1 ${$("eUni").value.trim()||"u"}.`;return}
+  const p={id,nombre:nom,categoria:$("eCat").value,unidad:$("eUni").value.trim()||"u",minimo:mn,habitual:hb,activo:$("eAct")?$("eAct").checked:true,stock:st,medida2:m2,equiv:eq};
   if(await enviar("guardarProducto",{producto:p},el,id?"Cambios guardados":"Producto agregado",$("eErr"))){S.llego=null;render();cerrar()}}
  else if(a==="lMenos"||a==="lMas"){ponerLlego(id,(S.llego[id]||0)+(a==="lMas"?1:-1))}
  else if(a==="llegoHabitual"){llegoDeSiempre();rLlego()}
@@ -460,8 +474,9 @@ document.addEventListener("click",async ev=>{
  else if(a==="guardarSacar"){const p=prod(S.sId),c=pn($("sCant").value);
   if(!p){$("sErr").textContent="Elegí un producto.";return}
   if(isNaN(c)||c<=0){$("sErr").textContent="Poné cuánto se saca.";return}
-  if(c>p.stock){$("sErr").textContent=`Solo hay ${fn(p.stock)} ${p.unidad} de ${p.nombre}. Si en realidad hay más, contalo primero.`;return}
-  if(await enviar("sacar",{id:p.id,cant:c,para:S.sPara,nota:$("sNota").value.trim()},el,`Listo: se descontaron ${fn(c)} ${p.unidad} de ${p.nombre}`,$("sErr"))){$("sCant").value="1";$("sNota").value="";render()}}
+  const usa2=tiene2(p)&&S.sMed==="medida2",enU=usa2?Math.round(c/p.equiv*1000)/1000:c,txtC=usa2?`${fn(c)} ${pl(p.medida2,c)}`:`${fn(c)} ${p.unidad}`;
+  if(enU>p.stock){$("sErr").textContent=`Solo hay ${fn(p.stock)} ${p.unidad}${tiene2(p)?` (≈ ${fn(en2(p))} ${pl(p.medida2,2)})`:""} de ${p.nombre}. Si en realidad hay más, contalo primero.`;return}
+  if(await enviar("sacar",{id:p.id,cant:c,medida:usa2?"medida2":"principal",para:S.sPara,nota:$("sNota").value.trim()},el,`Listo: se descontaron ${txtC} de ${p.nombre}`,$("sErr"))){$("sCant").value="1";$("sNota").value="";render()}}
  else if(a==="anular"){const m=S.movs.find(x=>x.id===id);if(!m)return;
   abrir(`<h2>¿Anular este movimiento?</h2><p class="sub">${esc(textoMov(m))} · ${esc(cuando(m.fecha))}</p><p class="sub">El stock vuelve a como estaba antes. Queda anotado que se anuló.</p><div id="aErr" class="lerr"></div><div class="btns"><button class="b" data-act="cerrar">No</button><button class="b p" data-act="confirmarAnular" data-id="${esc(id)}">Sí, anular</button></div>`)}
  else if(a==="confirmarAnular"){if(await enviar("anular",{id},el,"Movimiento anulado",$("aErr"))){cerrar();render()}}
