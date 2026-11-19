@@ -625,4 +625,14 @@ try{$("lcorreo").value=localStorage.getItem("internos-email")||"";if(localStorag
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&cred)cargar(true)});
 if("serviceWorker" in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
+<script>
+/* Actualización automática: si hay una versión nueva publicada, la app se recarga sola (sin cerrar sesión) */
+const APP_VER="20261119203221";
+async function buscarVersion(){if(!location.protocol.startsWith("http")||document.visibilityState!=="visible")return;
+  const ae=document.activeElement;if(ae&&(ae.tagName==="INPUT"||ae.tagName==="TEXTAREA"))return;
+  try{const v=(await fetch("version.txt?x="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"")).trim();
+    if(v&&v!==APP_VER&&sessionStorage.getItem("desp-recarga")!==v){sessionStorage.setItem("desp-recarga",v);try{irInicio()}catch(e){}
+      const u=new URL(location.href);u.searchParams.set("v",v);location.replace(u.toString())}}catch(e){}}
+buscarVersion();document.addEventListener("visibilitychange",buscarVersion);setInterval(buscarVersion,600000);
+</script>
 </body></html>
