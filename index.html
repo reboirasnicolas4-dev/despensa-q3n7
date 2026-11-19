@@ -163,7 +163,7 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
 </div>
 
 <div class="app" id="app" hidden>
- <div class="top"><div class="logo"></div><div style="flex:1"><h1>Despensa</h1><small>Alas de Libertad · stock y pedidos</small><span class="modo">👁 Modo solo mirar</span></div>
+ <div class="top"><a class="logo" href="https://reboirasnicolas4-dev.github.io/registro-k7x2/?inicio=1" onclick="irInicio()" aria-label="Volver al inicio" title="Volver al inicio" style="display:block"></a><div style="flex:1"><h1>Despensa</h1><small>Alas de Libertad · stock y pedidos</small><span class="modo">👁 Modo solo mirar</span></div>
   <button class="ic" data-act="actualizar" title="Actualizar" aria-label="Actualizar">⟳</button><button class="ic" data-act="menu" title="Más opciones" aria-label="Más opciones">⋯</button></div>
  <div class="inst" id="instbar" hidden><div style="font-size:26px">📲</div><div class="tx"><b>Instalá la app en este aparato</b>Queda con su ícono, como WhatsApp.</div><button data-act="instalar">Instalar</button></div>
  <div id="nota" class="nota" hidden></div>
@@ -248,6 +248,7 @@ const DESTINOS=[["Camino Seguro","🚐"],["Casa de Medio Camino","🏠"]];
 const DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
 const AVISO=0.2; // avisa cuando queda el 20% de lo que había después del último pedido
+function irInicio(){try{if(cred&&cred.token)sessionStorage.setItem("alas-paso",JSON.stringify({email:cred.correo,token:cred.token,t:Date.now()}))}catch(x){}}
 let cred=null,cargando=false,ocupado=false;
 const hoyD=new Date();
 const S={rol:"",prods:[],movs:[],v:"stock",cat:"Todo",q:"",llego:{},para:"",carro:{},medS:{},cal:{y:hoyD.getFullYear(),m:hoyD.getMonth()},dSel:""};
