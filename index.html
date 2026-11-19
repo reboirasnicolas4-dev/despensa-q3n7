@@ -132,7 +132,8 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
  #imp table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:12pt}
  #imp th,#imp td{border:1px solid #999;padding:6px 8px;text-align:left}#imp th{background:#f3e6d6}#imp td.n{text-align:right;white-space:nowrap}
 }
-</style></head>
+</style><script src="https://reboirasnicolas4-dev.github.io/registro-k7x2/inicio.js?v=5" data-app="despensa"></script>
+</head>
 <body>
 <div id="login" class="login" hidden><div class="logo" style="width:64px;height:64px;margin:0 auto 14px"></div>
  <h1>Despensa</h1><p>Alas de Libertad · stock y pedidos</p>
@@ -163,7 +164,7 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
 </div>
 
 <div class="app" id="app" hidden>
- <div class="top"><a class="logo" href="https://reboirasnicolas4-dev.github.io/registro-k7x2/?inicio=1" onclick="irInicio()" aria-label="Volver al inicio" title="Volver al inicio" style="display:block"></a><div style="flex:1"><h1>Despensa</h1><small>Alas de Libertad · stock y pedidos</small><span class="modo">👁 Modo solo mirar</span></div>
+ <div class="top"><a class="logo" href="https://reboirasnicolas4-dev.github.io/registro-k7x2/?inicio=1" onclick="if(window.AlasInicio){AlasInicio.abrir();return false}irInicio()" aria-label="Volver al inicio" title="Volver al inicio" style="display:block"></a><div style="flex:1"><h1>Despensa</h1><small>Alas de Libertad · stock y pedidos</small><span class="modo">👁 Modo solo mirar</span></div>
   <button class="ic" data-act="actualizar" title="Actualizar" aria-label="Actualizar">⟳</button><button class="ic" data-act="menu" title="Más opciones" aria-label="Más opciones">⋯</button></div>
  <div class="inst" id="instbar" hidden><div style="font-size:26px">📲</div><div class="tx"><b>Instalá la app en este aparato</b>Queda con su ícono, como WhatsApp.</div><button data-act="instalar">Instalar</button></div>
  <div id="nota" class="nota" hidden></div>
@@ -627,7 +628,7 @@ if("serviceWorker" in navigator&&location.protocol.startsWith("http"))window.add
 </script>
 <script>
 /* Actualización automática: si hay una versión nueva publicada, la app se recarga sola (sin cerrar sesión) */
-const APP_VER="20261119203221";
+const APP_VER="20261119204637";
 async function buscarVersion(){if(!location.protocol.startsWith("http")||document.visibilityState!=="visible")return;
   const ae=document.activeElement;if(ae&&(ae.tagName==="INPUT"||ae.tagName==="TEXTAREA"))return;
   try{const v=(await fetch("version.txt?x="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"")).trim();
