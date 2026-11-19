@@ -133,7 +133,7 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
  #imp table{width:100%;border-collapse:collapse;font-family:Arial,sans-serif;font-size:12pt}
  #imp th,#imp td{border:1px solid #999;padding:6px 8px;text-align:left}#imp th{background:#f3e6d6}#imp td.n{text-align:right;white-space:nowrap}
 }
-</style><script src="https://reboirasnicolas4-dev.github.io/registro-k7x2/inicio.js?v=17" data-app="despensa"></script>
+</style><script src="https://reboirasnicolas4-dev.github.io/registro-k7x2/inicio.js?v=18" data-app="despensa"></script>
 </head>
 <body>
 <div id="login" class="login" hidden><div class="logo" style="width:64px;height:64px;margin:0 auto 14px"></div>
@@ -629,7 +629,7 @@ if("serviceWorker" in navigator&&location.protocol.startsWith("http"))window.add
 </script>
 <script>
 /* Actualización automática: si hay una versión nueva publicada, la app se recarga sola (sin cerrar sesión) */
-const APP_VER="20261119223302";
+const APP_VER="20261119223520";
 async function buscarVersion(){if(!location.protocol.startsWith("http")||document.visibilityState!=="visible")return;
   const ae=document.activeElement;if(ae&&(ae.tagName==="INPUT"||ae.tagName==="TEXTAREA"))return;
   try{const v=(await fetch("version.txt?x="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"")).trim();
