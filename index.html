@@ -93,6 +93,7 @@ body.instalada #instbar,body.instalada .linst{display:none!important}
 .ayuda{border:1px dashed #6a4a16;background:#241a0e;border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.45;color:#f3d9a8;margin-bottom:10px}
 .paso{font:700 19px Fraunces,serif;margin:12px 0 8px}
 .meals{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px}
+#meals .meal:nth-child(5){grid-column:1/-1}
 .meal{min-height:64px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:700;font-size:16.5px;cursor:pointer;line-height:1.2;padding:6px}
 .meal.on{background:var(--acc);color:var(--accx);border:2px solid var(--acc)}
 .meal.env{background:#18202e;color:#cfe0ff;border-color:#33405a;font-size:14.5px;min-height:56px}.meal.env.on{background:var(--blue);color:#0c1a33;border:2px solid var(--blue)}
@@ -245,7 +246,7 @@ const fn=n=>{n=Math.round(Number(n||0)*100)/100;return String(n).replace(".",","
 const pn=v=>{const n=Number(String(v==null?"":v).trim().replace(",","."));return isFinite(n)?Math.round(n*1000)/1000:NaN};
 const ls={get(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(x){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(x){}},del(k){try{localStorage.removeItem(k)}catch(x){}}};
 const CATS=["Almacén","Condimentos","Frío","Limpieza"];
-const COMIDAS=[["Desayuno","☕"],["Almuerzo","🍝"],["Merienda","🧉"],["Cena","🍲"]];
+const COMIDAS=[["Desayuno","☕"],["Almuerzo","🍝"],["Merienda","🧉"],["Cena","🍲"],["Panadería","🥖"]];
 const DESTINOS=[["Camino Seguro","🚐"],["Casa de Medio Camino","🏠"]];
 const DIAS=["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
 const MESES=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
@@ -262,8 +263,8 @@ const prod=id=>S.prods.find(p=>p.id===id);
 const activos=()=>S.prods.filter(p=>p.activo);
 const esPaq=p=>p.categoria==="Condimentos"||p.unidad==="paq";
 const bajo=p=>p.activo&&p.referencia>0&&p.stock<=p.referencia*AVISO;
-const art=c=>(c==="Merienda"||c==="Cena"?"la ":"el ")+c.toLowerCase();
-const delA=c=>(c==="Merienda"||c==="Cena"?"de la ":"del ")+c.toLowerCase();
+const art=c=>(c==="Merienda"||c==="Cena"||c==="Panadería"?"la ":"el ")+c.toLowerCase();
+const delA=c=>(c==="Merienda"||c==="Cena"||c==="Panadería"?"de la ":"del ")+c.toLowerCase();
 const faltan=()=>activos().filter(bajo);
 const sugerido=p=>p.habitual>0?p.habitual:Math.max(1,Math.round(((p.referencia||p.minimo)-p.stock)*10)/10);
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
@@ -629,7 +630,7 @@ if("serviceWorker" in navigator&&location.protocol.startsWith("http"))window.add
 </script>
 <script>
 /* Actualización automática: si hay una versión nueva publicada, la app se recarga sola (sin cerrar sesión) */
-const APP_VER="20261120170500";
+const APP_VER="20261121181500";
 async function buscarVersion(){if(!location.protocol.startsWith("http")||document.visibilityState!=="visible")return;
   const ae=document.activeElement;if(ae&&(ae.tagName==="INPUT"||ae.tagName==="TEXTAREA"))return;
   try{const v=(await fetch("version.txt?x="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():"")).trim();
